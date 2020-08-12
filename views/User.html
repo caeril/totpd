@@ -1,0 +1,56 @@
+<html>
+
+<body>
+    <h1>user {{user.Username}}</h1>
+
+    <div>
+        Organization: {{user.Organization}}
+    </div>
+
+    <br />
+
+    <div>
+        <img src="/qrc/{{user.Id}}.png" />
+    </div>
+
+    <br />
+
+    <div>
+        URI: {{user.URL}}
+    </div>
+
+    <br />
+
+    <div>
+        {{ range codes }}
+        <div>{{.}}</div>
+        {{ end }}
+    </div>
+
+    <h3>Validate Code</h3>
+
+    {{ if invalid }}
+    <div>
+        HAHAHAH NO THAT DIDN'T WORK
+    </div>
+    {{ end }}
+
+    {{ if valid }}
+    <div>
+        OK FINE YEAH THAT WORKED LUCKY BASTARD
+    </div>
+    {{ end }}
+
+    <form method="POST" action="/validate">
+        <input type="hidden" name="uid" value="{{user.Id}}" />
+
+        <fieldset>
+            <label>Code</label>
+            <input type="text" name="code" />
+            <button type="submit">Verify</button>
+        </fieldset>
+
+    </form>
+</body>
+
+</html>

@@ -1,0 +1,44 @@
+<html>
+
+<body>
+    <h1>user {{user.Username}}</h1>
+
+    <div>
+        Organization: {{user.Organization}}
+    </div>
+
+    <br />
+
+    <div>
+        <img src="/qrc/{{user.Id}}.png" />
+    </div>
+
+    <br />
+
+    <div>
+        Key: {{user.Key.Secret()}}
+    </div>
+
+    <br />
+
+    <div>
+        {{ range codes }}
+        <div>{{.}}</div>
+        {{ end }}
+    </div>
+
+    <h3>Validate Code</h3>
+
+    <form method="POST" action="/validate">
+        <input type="hidden" name="uid" value="{{user.Id}}" />
+
+        <fieldset>
+            <label>Code</label>
+            <input type="text" name="code" />
+            <button type="submit">Verify</button>
+        </fieldset>
+
+    </form>
+</body>
+
+</html>

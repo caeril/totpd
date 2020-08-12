@@ -1,0 +1,30 @@
+<html>
+
+<body>
+    <h1>authenticator</h1>
+
+    <div>
+        <h3>add user</h3>
+
+        <form method="POST" action="/users">
+            <fieldset>
+                <label>organization</label>
+                <input type="text" name="org" />
+            </fieldset>
+            <fieldset>
+                <label>user identifier</label>
+                <input type="text" name="uid" />
+            </fieldset>
+            <button type="submit">Go for it</button>
+        </form>
+
+    </div>
+
+    <div>
+        {{ range users }}
+        <div><a href="/users/{{.Id}}">{{.Username}}</a></div>
+        {{ end }}
+    </div>
+</body>
+
+</html>
