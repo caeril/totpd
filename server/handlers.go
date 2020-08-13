@@ -13,7 +13,7 @@ import (
 	"github.com/pquerna/otp"
 	"github.com/pquerna/otp/totp"
 
-	"totpd/data"
+	"github.com/caeril/totpd/data"
 )
 
 func NewSHA256(data []byte) []byte {

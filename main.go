@@ -1,10 +1,12 @@
 package main
 
-import "totpd/server"
-import "totpd/data"
+import "github.com/caeril/totpd/config"
+import "github.com/caeril/totpd/server"
+import "github.com/caeril/totpd/data"
 
 func main() {
 
+	config.InitConfig()
 	data.InitData()
 	server.InitTemplates()
 	server.InitHandlers()

@@ -5,7 +5,9 @@ import (
 
 	"bytes"
 	"github.com/CloudyKit/jet"
+	"github.com/caeril/totpd/config"
 	"github.com/savsgio/atreugo"
+	"strconv"
 )
 
 var server *atreugo.Atreugo
@@ -37,7 +39,7 @@ func InitTemplates() {
 func InitRoutes() {
 
 	server = atreugo.New(atreugo.Config{
-		Addr: "0.0.0.0:8086",
+		Addr: "0.0.0.0:" + strconv.Itoa(config.Get().HttpPort),
 	})
 
 	server.GET("/", _Get_Index)
@@ -47,6 +49,9 @@ func InitRoutes() {
 
 	server.POST("/users", _Post_User)
 	server.POST("/validate", _Post_Validate)
+
+	server.POST("/api/users", APIPostUser)
+	server.GET("/api/validate/{uid}", APIValidateCode)
 
 }
 

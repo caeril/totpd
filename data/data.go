@@ -2,9 +2,9 @@ package data
 
 import (
 	"encoding/json"
+	"github.com/caeril/totpd/config"
 	"github.com/dgraph-io/badger"
 	"time"
-	"totpd/config"
 )
 
 var badgerInstance *badger.DB

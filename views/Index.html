@@ -1,29 +1,71 @@
 <html>
 
 <body>
-    <h1>authenticator</h1>
+    <h1>totpd v0.2</h1>
 
     <div>
-        <h3>add user</h3>
 
-        <form method="POST" action="/users">
-            <fieldset>
-                <label>organization</label>
-                <input type="text" name="org" />
-            </fieldset>
-            <fieldset>
-                <label>user identifier</label>
-                <input type="text" name="uid" />
-            </fieldset>
-            <button type="submit">Go for it</button>
-        </form>
+        <h2>Service Documentation</h2>
+
+        <pre>
+
+Everything is configured through environment variables. Here are the highlights:
+
+TOTPD_DATA_PATH=/etc/example # /tmp is the default if this environment variable doesn't exist.
+TOTPD_HTTP_PORT=31337        # default port is 8087 
+
+        </pre>
 
     </div>
 
     <div>
-        {{ range users }}
-        <div><a href="/users/{{.Id}}">{{.Username}}</a></div>
-        {{ end }}
+
+        <h2>API Documentation</h2>
+
+        <h3>Add User Profile</h3>
+        <pre>
+
+POST /api/users
+
+Request Body: { "organization": "Example, Inc.", "username": "bob@example.com" }
+
+Response Body: { "message": "success", "uid": "58b2498b5592ee6d683d0347416d3548813fbcec0d145cc0cc753fab86dcde8d" }
+
+        </pre>
+
+        <h3>Delete User Profile</h3>
+        <pre>
+
+DELETE /api/users/{uid}
+
+Response Body: { "message": "success" }
+Response Body: { "message": "failure" }
+
+        </pre>
+
+
+        <h3>Validate User Code</h3>
+        <pre>
+
+GET /api/validate/{uid}?code={code}
+
+Response Body: { "message": "valid" }
+Response Body: { "message": "invalid" }
+Response Body: { "message": "failure" }
+
+        </pre>
+
+
+        <h3>Get User QR Code</h3>
+        <pre>
+
+GET /qrc/{uid}.png
+
+Response Body: image/png of 512x512 pixel QR code
+
+        </pre>
+
+
     </div>
 </body>
 
