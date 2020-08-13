@@ -142,6 +142,7 @@ func _Get_QR(ctx *atreugo.RequestCtx) error {
 	image, _ := key.Image(512, 512)
 	png.Encode(&w, image)
 	ctx.SetContentType("image/png")
+	ctx.Response.Header.Add("Content-Type", "image/png")
 
 	return ctx.HTTPResponseBytes(w.Bytes(), 200)
 

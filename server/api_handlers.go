@@ -2,7 +2,6 @@ package server
 
 import (
 	"encoding/json"
-	"fmt"
 	"github.com/caeril/totpd/data"
 	"github.com/pquerna/otp/totp"
 	"github.com/savsgio/atreugo"
